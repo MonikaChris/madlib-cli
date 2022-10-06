@@ -44,8 +44,14 @@ def parse_template(text):
 
     return stripped, tuple(parts)
 
+
 def merge(text, subs):
     return text.format(*subs)
+
+
+def save_madlib(text):
+    with open('assets/my_madlib.txt', 'w') as writer:
+        writer.writelines(text)
 
 
 while playing:
@@ -63,7 +69,9 @@ while playing:
         else:
             libs.append(user_word)
 
-    print(merge(template[0], libs))
+    madlib = merge(template[0], libs)
+    print(madlib)
+    save_madlib(madlib)
 
     playing = False
 
