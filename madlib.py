@@ -22,9 +22,13 @@ for message in messages:
 print('*' * width)
 
 
+# Functions
 def read_template(file):
-    with open(file, 'r') as reader:
-        return reader.read()
+    try:
+        with open(file, 'r') as reader:
+            return reader.read()
+    except FileNotFoundError as fnf_error:
+        print(fnf_error)
 
 
 def parse_template(text):
@@ -44,7 +48,25 @@ def merge(text, subs):
     return text.format(*subs)
 
 
-# while playing:
+while playing:
+
+    text = read_template('assets/small.txt')
+
+    template = parse_template(text)
+
+    libs = []
+    for word in template[1]:
+        user_word = input(f'{word}? ')
+        if user_word == 'quit':
+            playing = False
+            break
+        else:
+            libs.append(user_word)
+
+    print(merge(template[0], libs))
+
+    playing = False
+
 
 
 
