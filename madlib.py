@@ -40,11 +40,11 @@ def parse_template(text):
 
     return stripped, tuple(parts)
 
-def merge():
-    pass
+def merge(text, subs):
+    return text.format(*subs)
 
 
 # while playing:
 
 
-print(parse_template("It was a {Adjective} and {Adjective} {Noun}."))
+
