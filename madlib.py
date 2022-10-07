@@ -32,7 +32,7 @@ def read_template(file):
 
 
 def parse_template(text):
-    pattern = r"[{]\w+[}]"
+    pattern = r"[{][^}]+[}]"
 
     stripped = re.sub(pattern, '{}', text)
 
@@ -56,7 +56,7 @@ def save_madlib(text):
 
 while playing:
 
-    text = read_template('assets/small.txt')
+    text = read_template('assets/make_me_a_video_game.txt')
 
     template = parse_template(text)
 
