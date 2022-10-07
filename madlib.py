@@ -4,7 +4,7 @@ import re
 width = 52
 margin = '**'
 messages = ['Welcome! Let\'s play MadLibs!',
-            'Enter a noun, verb, or adjective when propmted.',
+            'Enter a noun, adjective, etc. when prompted.',
             'Enter "quit" to exit.']
 playing = True
 
@@ -29,6 +29,8 @@ def read_template(file):
             return reader.read()
     except FileNotFoundError as fnf_error:
         print(fnf_error)
+        raise FileNotFoundError
+
 
 
 def parse_template(text):
@@ -56,7 +58,7 @@ def save_madlib(text):
 
 while playing:
 
-    text = read_template('assets/make_me_a_video_game.txt')
+    text = read_template("assets/make_me_a_video_game.txt")
 
     template = parse_template(text)
 
@@ -68,6 +70,9 @@ while playing:
             break
         else:
             libs.append(user_word)
+
+    if not playing:
+        break
 
     madlib = merge(template[0], libs)
     print(madlib)
